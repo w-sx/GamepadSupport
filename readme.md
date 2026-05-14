@@ -6,7 +6,7 @@ This add-on provides NVDA with support for **XInput-compatible gamepads** (such 
 
 * **Add-on Name**: Gamepad Support
 * **Author**: Shunxian Wu <PurrHare@outlook.com>
-* **Tested Version**: NVDA 2025.1
+* **Tested Version**: NVDA 2026.1
 * **License**: GPL v3
 * **Official Website**: [NVDA Chinese Community](https://www.nvdacn.com/)
 * **Repository**: [GitHub Repository](https://github.com/w-sx/GamepadSupport)
@@ -22,6 +22,7 @@ This add-on provides NVDA with support for **XInput-compatible gamepads** (such 
     * **Shoulder Buttons**: LB, RB.
     * **Thumbstick Clicks**: L_Thumb (Left stick click), R_Thumb (Right stick click).
     * **Menu Buttons**: Start, Back.
+    * **Thumbstick Direction**: Left and right analog sticks — push Up/Down/Left/Right to trigger independent gestures, with auto-repeat while held.
 * **Smart Trigger Detection**: Simulates LT and RT linear triggers as standard binary buttons. Includes pressure threshold logic to prevent accidental triggers.
 * **Native Gesture Support**: All gamepad inputs are registered as standard NVDA "gestures," allowing flexible configuration just like keyboard shortcuts.
 * **Performance Optimization**:

@@ -25,7 +25,7 @@ addon_info = {
 	# Translators: Long description to be shown for this add-on on add-on information from add-ons manager
 	"addon_description": _("""Provides gamepad gesture support"""),
 	# version
-	"addon_version": "2026.5",
+	"addon_version": "2026.5.1",
 	# Author(s)
 	"addon_author": "Shunxian Wu <PurrHare@outlook.com>",
 	# URL for the add-on documentation support
