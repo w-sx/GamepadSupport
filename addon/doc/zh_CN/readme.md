@@ -1,6 +1,6 @@
 # Gamepad Support(游戏手柄支持)插件
 
-本插件为 NVDA 增加了对 **XInput 兼容手柄**（如 Xbox 控制器、主流国产 PC 手柄等）的支持。通过本插件，用户可以将手柄按键映射为 NVDA 指令或键盘快捷键，从而实现通过控制器单手操作电脑。
+本插件为 NVDA 增加了对 **XInput 兼容手柄**（如 Xbox 控制器、主流国产 PC 手柄等）和 **PS5 DualSense 手柄**的支持。通过本插件，用户可以将手柄按键映射为 NVDA 指令或键盘快捷键，从而实现通过控制器单手操作电脑。
 
 ## 基本信息
 
@@ -16,11 +16,13 @@
 ## 功能特性
 
 * **XInput 集成**：基于 XInput 1.4 标准，兼容性强，延迟极低。
+* **DualSense 支持**：PS5 DualSense 手柄通过 Windows 摇杆接口读取，并映射为与 XInput 相同的按键名称（✕ = A，○ = B，□ = X，△ = Y，L1/R1 = LB/RB，L2/R2 = LT/RT，Create = Back，Options = Start，L3/R3 = L_Thumb/R_Thumb），因此同一套手势对两种手柄都有效。PS 键、触摸板按下和静音键分别为 PS、Touchpad、Mute。
 * **全按键识别**：
     * **方向键 (D-Pad)**: 上、下、左、右。
     * **动作键**: A, B, X, Y。
     * **肩键**: LB, RB。
     * **摇杆点击**: 左摇杆中键 (L_Thumb), 右摇杆中键 (R_Thumb)。
+    * **摇杆方向**: L_Thumb_Up/Down/Left/Right 和 R_Thumb_Up/Down/Left/Right，摇杆推过约一半行程时触发，长按连发。
     * **菜单键**: Start, Back。
 * **智能扳机识别**：将 LT 和 RT 线性扳机键模拟为普通开关按键，支持压力阈值判定，防止误触。
 * **原生手势支持**：所有手柄输入均注册为 NVDA 系统的标准“手势”，可像分配键盘快捷键一样灵活配置功能。
@@ -44,7 +46,7 @@
 ## 常见问题
 
 **Q: 为什么我的手柄没反应？**
-A: 请确保你的手柄支持 XInput 模式（通常现代 PC 手柄均支持）。连接后可检查 NVDA 日志，若显示 "Gamepad connected" 则表示连接成功。
+A: 请确保你的手柄支持 XInput 模式（通常现代 PC 手柄均支持）或是 PS5 DualSense 手柄。连接后可检查 NVDA 日志，若显示 "Gamepad connected" 则表示连接成功。
 **Q: 为什么只有 XInput 1.4？**
 A: 这是为了兼容 Windows 8 及以上系统的原生驱动。如果你的系统版本较低，可能需要手动更新 DirectX 运行库。
 
