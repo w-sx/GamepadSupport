@@ -1,5 +1,6 @@
 import ctypes
 from ctypes import wintypes
+from .thumbstick import Thumbstick
 
 class JOYINFOEX(ctypes.Structure):
     _fields_ = [(name, wintypes.DWORD) for name in (
@@ -8,6 +9,7 @@ class JOYINFOEX(ctypes.Structure):
     )]
 
 JOY_RETURNALL = 0xFF
+CENTER = 32768
 
 # DualSense buttons (in HID order) named like their XInput counterparts, so the same gestures work
 BUTTON_ITEMS = [
@@ -44,11 +46,17 @@ class Joystick:
     def __init__(self):
         self._winmm = ctypes.windll["winmm"]
         self._info = JOYINFOEX(dwSize=ctypes.sizeof(JOYINFOEX), dwFlags=JOY_RETURNALL)
+        self._left = Thumbstick("L_Thumb")
+        self._right = Thumbstick("R_Thumb")
 
     def read(self):
         """Return the set of pressed buttons, or None if no gamepad is connected."""
         # get gamepad 0
         if self._winmm.joyGetPosEx(0, ctypes.byref(self._info)):
             return None
-        pressed = {name for mask, name in BUTTON_ITEMS if self._info.dwButtons & mask}
-        return pressed | POV_ITEMS.get(self._info.dwPOV, set())
+        info = self._info
+        pressed = {name for mask, name in BUTTON_ITEMS if info.dwButtons & mask} | POV_ITEMS.get(info.dwPOV, set())
+        # axes are unsigned and Y points down, so centre them and flip Y to match XInput
+        pressed |= self._left.read(info.dwXpos - CENTER, CENTER - info.dwYpos)
+        pressed |= self._right.read(info.dwZpos - CENTER, CENTER - info.dwRpos)
+        return pressed

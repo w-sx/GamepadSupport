@@ -1,5 +1,6 @@
 import ctypes
 from ctypes import wintypes
+from .thumbstick import Thumbstick
 
 class XINPUT_GAMEPAD(ctypes.Structure):
     _fields_ = [
@@ -43,6 +44,8 @@ class XInput:
         self._xinput = ctypes.windll["xinput1_4"]
         self._state = XINPUT_STATE()
         self._lt = self._rt = False
+        self._left = Thumbstick("L_Thumb")
+        self._right = Thumbstick("R_Thumb")
 
     def read(self):
         """Return the set of pressed buttons, or None if no gamepad is connected."""
@@ -51,6 +54,7 @@ class XInput:
             return None
         gp = self._state.Gamepad
         pressed = {name for mask, name in BUTTON_ITEMS if gp.wButtons & mask}
+        pressed |= self._left.read(gp.sThumbLX, gp.sThumbLY) | self._right.read(gp.sThumbRX, gp.sThumbRY)
         # LT/RT act as buttons: pressed above THRESHOLD_PRESS, released below THRESHOLD_RELEASE
         self._lt = gp.bLeftTrigger > THRESHOLD_PRESS or (self._lt and gp.bLeftTrigger >= THRESHOLD_RELEASE)
         self._rt = gp.bRightTrigger > THRESHOLD_PRESS or (self._rt and gp.bRightTrigger >= THRESHOLD_RELEASE)

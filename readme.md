@@ -22,6 +22,7 @@ This add-on provides NVDA with support for **XInput-compatible gamepads** (such 
     * **Action Buttons**: A, B, X, Y.
     * **Shoulder Buttons**: LB, RB.
     * **Thumbstick Clicks**: L_Thumb (Left stick click), R_Thumb (Right stick click).
+    * **Thumbstick Directions**: L_Thumb_Up/Down/Left/Right and R_Thumb_Up/Down/Left/Right, triggered once the stick is pushed about halfway, with auto-repeat while held.
     * **Menu Buttons**: Start, Back.
 * **Smart Trigger Detection**: Simulates LT and RT linear triggers as standard binary buttons. Includes pressure threshold logic to prevent accidental triggers.
 * **Native Gesture Support**: All gamepad inputs are registered as standard NVDA "gestures," allowing flexible configuration just like keyboard shortcuts.
